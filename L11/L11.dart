@@ -1,4 +1,7 @@
-// import file here
+import 'Thanos.dart';
+import 'Avenger.dart';
+import 'CaptainAmerica.dart';
+import 'Thor.dart';
 
 const List<String> urlAvengers = [
   'https://blogspotscraping.herokuapp.com/avengers/Thor.json',
@@ -6,14 +9,46 @@ const List<String> urlAvengers = [
   'https://blogspotscraping.herokuapp.com/avengers/CaptainAmerica.json',
 ];
 
-//funtion createAvengers(){
-  // todo
-  // forced call default factory constructor
-//}
-
-void main(){
-  print('============ L11.2 - Call Default Factory Constructor Orderly ============');
-  // todo
-  print('============ L11.1 - Call Named factory constructor create any avenger ============');
-  // todo
+void createAvengers() async {
+  // for (var i in urlAvengers) {
+  //   var avengers = await Avengers.fetchAvenger(i);
+  //   thorHomeMade.showInfo(avengers);
+  //   thanos.showInfo(avengers);
+  //   ca.showInfo(avengers);
+  // }
+  var thor = await Avengers.fetchAvenger(
+      urlAvengers[0]);
+  var thnos = await Avengers.fetchAvenger(
+      urlAvengers[1]);
+  var captain = await Avengers.fetchAvenger(
+      urlAvengers[2]);
+  Thor thorHomeMade =
+      Avenger(type: Avengers.Thor, name: "Thor Handmade", sexual: "Male");
+  thorHomeMade.showInfo(thor);
+  Thanos thanos =
+      Avenger(type: Avengers.Thanos, name: "Thanos Fake", sexual: "Male");
+  thanos.showInfo(thnos);
+  CaptainAmerica ca = Avenger(
+      type: Avengers.CaptainAmerica,
+      name: "CaptainAmerica Handmade",
+      sexual: "Female");
+  ca.showInfo(captain);
+  ca.fetchMjolnir();
 }
+
+void main() async {
+  print(
+      '============ L11.2 - Call Default Factory Constructor Orderly ============');
+  await createAvengers();
+
+// todo
+  print('============ L11.1 - Named factory constructor ============');
+  var captainAmerica = await Avengers.fetchAvenger(
+      urlAvengers[2]);
+  CaptainAmerica captaint = Avenger.fromURL(
+      urlAvengers[2]);
+  captaint.showInfo(captainAmerica);
+// todo
+}
+
+// http://prntscr.com/o2g3no
