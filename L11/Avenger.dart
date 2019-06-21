@@ -12,10 +12,11 @@ abstract class Avenger {
     this.name = name;
     this.sexual = sexual;
   }
-  void showInfo(var a) {
+
+  void showInfo() {
     print('------ Info ------');
-    print('Name: ${a["Avenger"]["name"]}');
-    print('Sexual: ${a["Avenger"]["sexual"]}');
+    print('Name: $name');
+    print('Sexual: $sexual');
   }
 
   factory Avenger(
@@ -37,37 +38,25 @@ abstract class Avenger {
 
   factory Avenger.fromURL(String url) {
     String type = Avengers.getFileNameFromUrl(url);
-    dynamic avenger;
-    var name ;
-    var sexual;
-    switch (type) {
-      case "Thor":
-        avenger = Thor(name: name, sexual: sexual);
-        break;
-      case "Thanos":
-        avenger = Thanos(name: name, sexual: sexual);
-        break;
-      case "CaptainAmerica":
-        avenger = CaptainAmerica(name: name, sexual: sexual);
-        break;
-    }
-    // Avengers.fetchAvenger(url).then((data) {
-    //   var name = data["Avenger"]["name"];
-    //   var sexual = data["Avenger"]["sexual"];
-    //   switch (type) {
-    //     case "Thor":
-    //       avenger = Thor(name: name,sexual: sexual);
-    //       break;
-    //     case "Thanos":
-    //       avenger = Thanos(name: name,sexual: sexual);
-    //       break;
-    //     case "CaptainAmerica":
-    //       avenger = CaptainAmerica(name: name,sexual: sexual);
-    //       break;
-    //   }
-    //   avenger.showInfo();
-    // });
-    return avenger;
+    Avenger avenger;
+    Avengers.fetchAvenger(url).then((responseJson) {
+      String name = responseJson["Avenger"]["name"];
+      String sexual = responseJson["Avenger"]["sexual"];
+      switch (type) {
+        case "Thanos":
+          avenger = Thanos(name: name, sexual: sexual);
+          break;
+        case "Thor":
+          avenger = Thor(name: name, sexual: sexual);
+          break;
+        case "CaptainAmerica":
+          avenger = CaptainAmerica(name: name, sexual: sexual);
+          break;
+      }
+      avenger.showInfo();
+      return avenger;
+    });
+    return null;
   }
   void doSkill();
 }
@@ -101,19 +90,4 @@ class Avengers {
       return JSON.jsonDecode((response.body));
     });
   }
-
-  // static Future<dynamic> fetchAvenger(String url) async {
-  //   try {
-  //     final response = await http.get(url);
-  //     if (response.statusCode == 200) {
-  //       // If server returns an OK response, parse the JSON
-  //       return JSON.jsonDecode((response.body));
-  //     } else {
-  //       // If that response was not OK, throw an error.
-  //       print('Failed to load post');
-  //     }
-  //   } catch (e) {
-  //     print(e);
-  //   }
-  // }
 }

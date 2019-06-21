@@ -1,7 +1,5 @@
-import 'Thanos.dart';
 import 'Avenger.dart';
-import 'CaptainAmerica.dart';
-import 'Thor.dart';
+import './CaptainAmerica.dart';
 
 const List<String> urlAvengers = [
   'https://blogspotscraping.herokuapp.com/avengers/Thor.json',
@@ -9,46 +7,29 @@ const List<String> urlAvengers = [
   'https://blogspotscraping.herokuapp.com/avengers/CaptainAmerica.json',
 ];
 
-void createAvengers() async {
-  // for (var i in urlAvengers) {
-  //   var avengers = await Avengers.fetchAvenger(i);
-  //   thorHomeMade.showInfo(avengers);
-  //   thanos.showInfo(avengers);
-  //   ca.showInfo(avengers);
-  // }
-  var thor = await Avengers.fetchAvenger(
-      urlAvengers[0]);
-  var thnos = await Avengers.fetchAvenger(
-      urlAvengers[1]);
-  var captain = await Avengers.fetchAvenger(
-      urlAvengers[2]);
-  Thor thorHomeMade =
-      Avenger(type: Avengers.Thor, name: "Thor Handmade", sexual: "Male");
-  thorHomeMade.showInfo(thor);
-  Thanos thanos =
-      Avenger(type: Avengers.Thanos, name: "Thanos Fake", sexual: "Male");
-  thanos.showInfo(thnos);
-  CaptainAmerica ca = Avenger(
-      type: Avengers.CaptainAmerica,
-      name: "CaptainAmerica Handmade",
-      sexual: "Female");
-  ca.showInfo(captain);
-  ca.fetchMjolnir();
+void createAvengers() {
+  for (final url in urlAvengers) {
+    Avengers.fetchAvenger(url).then((avengers) {
+      String type = Avengers.getFileNameFromUrl(url);
+      String name = avengers["Avenger"]["name"];
+      String sexual = avengers["Avenger"]["sexual"];
+      Avenger avenger = Avenger(type: type, name: name, sexual: sexual);
+      avenger.showInfo();
+      //createAvengers();
+      //Avengers.fetchAvenger(url);
+    }).catchError((error) {
+      print("Error");
+    });
+  }
 }
 
-void main() async {
+void main() {
   print(
       '============ L11.2 - Call Default Factory Constructor Orderly ============');
-  await createAvengers();
+  createAvengers();
 
 // todo
   print('============ L11.1 - Named factory constructor ============');
-  var captainAmerica = await Avengers.fetchAvenger(
-      urlAvengers[2]);
-  CaptainAmerica captaint = Avenger.fromURL(
-      urlAvengers[2]);
-  captaint.showInfo(captainAmerica);
+  CaptainAmerica captainAmerica = Avenger.fromURL(urlAvengers[2]);
 // todo
 }
-
-// http://prntscr.com/o2g3no
