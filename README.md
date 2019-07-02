@@ -1,4 +1,96 @@
 ﻿﻿﻿﻿# dart-basic
+
+# Lesson 13
+* **Knowledge** : *clean code & algorithm*
+* **Deadline**: *6:00 PM Friday 05th Jul 2019*
+* **Fored Requirements**:
+  - Clean your **L12** code & follow the scenario of **main** function [4 marks]
+    ```dart
+    void main(){
+      // L12.1.1 kịch bản tổng đài 1 hàm
+      
+
+      // L12.1.2 kịch bản tổng đài tách hàm 
+
+
+      // L12.2.1 khai báo và sử dụng array số nguyên
+
+
+      // L12.2.2 khai báo và sử dụng ma trận số nguyên bằng List & Map
+
+
+      // L12.2.3 khai báo và sử dụng dữ liệu json tổng hợp(từa lưa kiểu) bằng Map
+
+
+      // L12.3 sắp xếp mảng số nguyên
+
+    
+      // L12.4 tìm kiếm phần tử bất kỳ trong mảng
+
+
+      // L12.5 tìm kiếm nhị phân phần tử bất kỳ trong mảng
+
+    }
+    ```
+  - Create a function convert raw json to nested json [5 marks]
+    - Input raw json
+      ```dart
+      List<Map<String, dynamic>> rawJson = [
+        {"id": 1, "menuName": "A", "parentId": null},
+        {"id": 2, "menuName": "AB", "parentId": 1},
+        {"id": 3, "menuName": "ABC", "parentId": 2},
+        {"id": 4, "menuName": "ABCD", "parentId": 3},
+        {"id": 5, "menuName": "AE", "parentId": 1},
+        {"id": 6, "menuName": "AF", "parentId": 1},
+        {"id": 7, "menuName": "G", "parentId": null},
+        {"id": 8, "menuName": "H", "parentId": null},
+      ]
+      ```
+    - Output nested json 
+      ```dart
+          List<Map<String, dynamic>> nestedJson = [
+            {
+              "id": 1,
+              "menuName": "A",
+              "children": [
+                {
+                  "id": 2,
+                  "menuName": "AB",
+                  "children": [
+                    {
+                      "id": 3,
+                      "menuName": "ABC",
+                      "children":[
+                        {
+                          "id": 4,
+                          "menuName": "ABCD",
+                        }
+                      ]
+                    }               
+                  ]
+                },
+                {
+                  "id": 5,
+                  "menuName": "AE",
+                },
+                {
+                  "id": 6,
+                  "menuName": "AF",
+                }
+              ]
+            },
+            {
+              "id": 7,
+              "menuName": "G",
+            },
+            {
+              "id": 8,
+              "menuName": "H",
+            }
+        ];
+      ```
+  - print pretty console for json data as this screen : http://prntscr.com/o9e825 [1 mark]
+
 # Lesson 12
 * **Knowledge** : *Recursive, List, Map, sort & find algorithm*
 * **Deadline**: *6:00 PM Thursday 27th Jun 2019*
