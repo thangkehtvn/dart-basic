@@ -1,4 +1,248 @@
 ﻿﻿﻿﻿# dart-basic
+# Lesson 14
+* **Knowledge** : *Recursive, List, Map, algorithm*
+* **Deadline**: *6:00 PM Monday 16th Jul 2019*
+* **Fored Standard**:
+  - Get latest code from **master** branch
+  - Code in L14 folder
+  - Always create a feature with format : **feature/L14-name-member**
+  - Pull request title is **L14 Finish**
+  - Pull request body is link screenshot your result
+  - All code only in L14.dart
+
+* **Requirements**:
+  - Give a json data 
+  ```js
+  var menuList = [
+    { id: 0, menuName: 'Root', parentId: '#' },
+    { id: 1, menuName: 'A', parentId: 0 },
+    { id: 2, menuName: 'B', parentId: 0 },
+    { id: 3, menuName: 'C', parentId: 5 },
+    { id: 4, menuName: 'D', parentId: 5 },
+    { id: 5, menuName: 'E', parentId: 0 },
+    { id: 6, menuName: 'F', parentId: 5 },
+    { id: 7, menuName: 'G', parentId: 1 },
+    { id: 8, menuName: 'H', parentId: 1 },
+    { id: 9, menuName: 'I', parentId: 6 },
+    { id: 10, menuName: 'J', parentId: 6 },
+    { id: 11, menuName: 'K', parentId: 3 },
+    { id: 12, menuName: 'L', parentId: 3 },
+    { id: 13, menuName: 'M', parentId: 3 },
+    { id: 14, menuName: 'N', parentId: 12 },
+    { id: 15, menuName: 'O', parentId: 12 },
+    { id: 16, menuName: 'P', parentId: 18 },
+    { id: 17, menuName: 'Q', parentId: 18 },
+    { id: 18, menuName: 'R', parentId: 10 },
+    { id: 19, menuName: 'S', parentId: 10 },
+    { id: 20, menuName: 'T', parentId: 10 }
+  ]
+  ```
+  - L14.1: convert menuList to menuMap as [2 marks]
+  ```js
+	{ 
+	  '0': { id: 0, menuName: 'Root'},
+	  '1': { id: 1, menuName: 'A' },
+	  '2': { id: 2, menuName: 'B' },
+	  '3': { id: 3, menuName: 'C' },
+	  '4': { id: 4, menuName: 'D' },
+	  '5': { id: 5, menuName: 'E' },
+	  '6': { id: 6, menuName: 'F' },
+	  '7': { id: 7, menuName: 'G' },
+	  '8': { id: 8, menuName: 'H' },
+	  '9': { id: 9, menuName: 'I' },
+	  '10': { id: 10, menuName: 'J' },
+	  '11': { id: 11, menuName: 'K' },
+	  '12': { id: 12, menuName: 'L' },
+	  '13': { id: 13, menuName: 'M' },
+	  '14': { id: 14, menuName: 'N' },
+	  '15': { id: 15, menuName: 'O' },
+	  '16': { id: 16, menuName: 'P' },
+	  '17': { id: 17, menuName: 'Q' },
+	  '18': { id: 18, menuName: 'R' },
+	  '19': { id: 19, menuName: 'S' },
+	  '20': { id: 20, menuName: 'T' }
+	}
+  ```
+  - L14.2 : group menu by parentId as [2 marks]
+  ```js
+  {
+	  '0': [ 1, 2, 5 ],
+	  '1': [ 7, 8 ],
+	  '3': [ 11, 12, 13 ],
+	  '5': [ 3, 4, 6 ],
+	  '6': [ 9, 10 ],
+	  '10': [ 18, 19, 20 ],
+	  '12': [ 14, 15 ],
+	  '18': [ 16, 17 ],
+	  '#': [ 0 ] 
+  }
+  ```
+  - L14.3 : covert this javascript algorithm to dart (convert to nested json)
+  ```js
+		let isArray = function (obj) {
+			return Object.prototype.toString.call(obj) == "[object Array]";
+		}
+		function buildTree(menuMap, parentIdGroups, parentIdRoot) {
+			let currentNode = parentIdGroups[parentIdRoot]
+			if (currentNode === undefined)
+				currentNode = []
+			return currentNode.map((menuId, index) => {
+				let record = menuMap[menuId];
+				let keys = parentIdGroups[parentIdRoot][index];
+				var children = isArray(keys) ?
+					keys.map(function (key) {
+						return buildTree(menuMap, parentIdGroups, key);
+					}) :
+					buildTree(menuMap, parentIdGroups, keys);
+				if (children.length) {
+					record.children = children;
+				}
+				return record;
+			})
+		}
+		(function () {
+			let menuMap = 	{ 
+			  '0': { id: 0, menuName: 'Root'},
+			  '1': { id: 1, menuName: 'A' },
+			  '2': { id: 2, menuName: 'B' },
+			  '3': { id: 3, menuName: 'C' },
+			  '4': { id: 4, menuName: 'D' },
+			  '5': { id: 5, menuName: 'E' },
+			  '6': { id: 6, menuName: 'F' },
+			  '7': { id: 7, menuName: 'G' },
+			  '8': { id: 8, menuName: 'H' },
+			  '9': { id: 9, menuName: 'I' },
+			  '10': { id: 10, menuName: 'J' },
+			  '11': { id: 11, menuName: 'K' },
+			  '12': { id: 12, menuName: 'L' },
+			  '13': { id: 13, menuName: 'M' },
+			  '14': { id: 14, menuName: 'N' },
+			  '15': { id: 15, menuName: 'O' },
+			  '16': { id: 16, menuName: 'P' },
+			  '17': { id: 17, menuName: 'Q' },
+			  '18': { id: 18, menuName: 'R' },
+			  '19': { id: 19, menuName: 'S' },
+			  '20': { id: 20, menuName: 'T' }
+			}
+			let parentIdGroups = {
+			  '0': [ 1, 2, 5 ],
+			  '1': [ 7, 8 ],
+			  '3': [ 11, 12, 13 ],
+			  '5': [ 3, 4, 6 ],
+			  '6': [ 9, 10 ],
+			  '10': [ 18, 19, 20 ],
+			  '12': [ 14, 15 ],
+			  '18': [ 16, 17 ],
+			  '#': [ 0 ] 
+		  }
+			let tree = buildTree(menuMap, parentIdGroups, '#')
+			console.log(JSON.stringify(tree, null, 2));
+  ```
+    - Result:
+    ```js
+    	[
+			  {
+				"id": 0,
+				"menuName": "Root",
+				"children": [
+				  {
+					"id": 1,
+					"menuName": "A",
+					"children": [
+					  {
+						"id": 7,
+						"menuName": "G"
+					  },
+					  {
+						"id": 8,
+						"menuName": "H"
+					  }
+					]
+				  },
+				  {
+					"id": 2,
+					"menuName": "B"
+				  },
+				  {
+					"id": 5,
+					"menuName": "E",
+					"children": [
+					  {
+						"id": 3,
+						"menuName": "C",
+						"children": [
+						  {
+							"id": 11,
+							"menuName": "K"
+						  },
+						  {
+							"id": 12,
+							"menuName": "L",
+							"children": [
+							  {
+								"id": 14,
+								"menuName": "N"
+							  },
+							  {
+								"id": 15,
+								"menuName": "O"
+							  }
+							]
+						  },
+						  {
+							"id": 13,
+							"menuName": "M"
+						  }
+						]
+					  },
+					  {
+						"id": 4,
+						"menuName": "D"
+					  },
+					  {
+						"id": 6,
+						"menuName": "F",
+						"children": [
+						  {
+							"id": 9,
+							"menuName": "I"
+						  },
+						  {
+							"id": 10,
+							"menuName": "J",
+							"children": [
+							  {
+								"id": 18,
+								"menuName": "R",
+								"children": [
+								  {
+									"id": 16,
+									"menuName": "P"
+								  },
+								  {
+									"id": 17,
+									"menuName": "Q"
+								  }
+								]
+							  },
+							  {
+								"id": 19,
+								"menuName": "S"
+							  },
+							  {
+								"id": 20,
+								"menuName": "T"
+							  }
+							]
+						  }
+						]
+					  }
+					]
+				  }
+				]
+			  }
+		]
+    ```
 
 # Lesson 13
 * **Knowledge** : *clean code & algorithm*
