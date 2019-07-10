@@ -101,7 +101,7 @@
 			})
 		}
 		(function () {
-			let menuMap = 	{ 
+			let menuMap = { 
 			  '0': { id: 0, menuName: 'Root'},
 			  '1': { id: 1, menuName: 'A' },
 			  '2': { id: 2, menuName: 'B' },
@@ -135,8 +135,9 @@
 			  '18': [ 16, 17 ],
 			  '#': [ 0 ] 
 		  }
-			let tree = buildTree(menuMap, parentIdGroups, '#')
-			console.log(JSON.stringify(tree, null, 2));
+    let tree = buildTree(menuMap, parentIdGroups, '#')
+    console.log(JSON.stringify(tree, null, 2))
+  )()
   ```
     - Result: Run above code by **Nodejs** or **Chrome** to see result
     
