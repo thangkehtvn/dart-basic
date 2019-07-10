@@ -91,7 +91,7 @@
   ```
   - **L14.3** : covert this ***javascript*** algorithm to ***dart*** [6 marks]
   ```js
-		let isArray = function (obj) {
+  let isArray = function (obj) {
       return Object.prototype.toString.call(obj) == "[object Array]";
     }
     function buildTree(menuMap, parentIdGroups, parentIdRoot) {
@@ -102,9 +102,7 @@
             let record = menuMap[menuId];
             let keys = parentIdGroups[parentIdRoot][index];
             var children = isArray(keys) ?
-                keys.map(function (key) {
-                    return buildTree(menuMap, parentIdGroups, key);
-                }) :
+                keys.map(key => buildTree(menuMap, parentIdGroups, key)) :
                 buildTree(menuMap, parentIdGroups, keys);
             if (children.length) {
                 record.children = children;
