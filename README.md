@@ -63,7 +63,7 @@
 	  '20': { id: 20, menuName: 'T' }
 	}
   ```
-  - L14.2 : group menu by parentId as [2 marks]
+  - L14.2 : group menu by parentId as : [2 marks]
   ```js
   {
 	  '0': [ 1, 2, 5 ],
@@ -77,7 +77,7 @@
 	  '#': [ 0 ] 
   }
   ```
-  - L14.3 : covert this javascript algorithm to dart (convert to nested json)
+  - L14.3 : covert this **javascript** algorithm to **dart** [6 marks]
   ```js
 		let isArray = function (obj) {
 			return Object.prototype.toString.call(obj) == "[object Array]";
@@ -138,112 +138,8 @@
 			let tree = buildTree(menuMap, parentIdGroups, '#')
 			console.log(JSON.stringify(tree, null, 2));
   ```
-    - Result:
-    ```js
-    	[
-			  {
-				"id": 0,
-				"menuName": "Root",
-				"children": [
-				  {
-					"id": 1,
-					"menuName": "A",
-					"children": [
-					  {
-						"id": 7,
-						"menuName": "G"
-					  },
-					  {
-						"id": 8,
-						"menuName": "H"
-					  }
-					]
-				  },
-				  {
-					"id": 2,
-					"menuName": "B"
-				  },
-				  {
-					"id": 5,
-					"menuName": "E",
-					"children": [
-					  {
-						"id": 3,
-						"menuName": "C",
-						"children": [
-						  {
-							"id": 11,
-							"menuName": "K"
-						  },
-						  {
-							"id": 12,
-							"menuName": "L",
-							"children": [
-							  {
-								"id": 14,
-								"menuName": "N"
-							  },
-							  {
-								"id": 15,
-								"menuName": "O"
-							  }
-							]
-						  },
-						  {
-							"id": 13,
-							"menuName": "M"
-						  }
-						]
-					  },
-					  {
-						"id": 4,
-						"menuName": "D"
-					  },
-					  {
-						"id": 6,
-						"menuName": "F",
-						"children": [
-						  {
-							"id": 9,
-							"menuName": "I"
-						  },
-						  {
-							"id": 10,
-							"menuName": "J",
-							"children": [
-							  {
-								"id": 18,
-								"menuName": "R",
-								"children": [
-								  {
-									"id": 16,
-									"menuName": "P"
-								  },
-								  {
-									"id": 17,
-									"menuName": "Q"
-								  }
-								]
-							  },
-							  {
-								"id": 19,
-								"menuName": "S"
-							  },
-							  {
-								"id": 20,
-								"menuName": "T"
-							  }
-							]
-						  }
-						]
-					  }
-					]
-				  }
-				]
-			  }
-		]
-    ```
-
+    - Result: Run above code by **Nodejs** or **Chrome** to see result
+    
 # Lesson 13
 * **Knowledge** : *clean code & algorithm*
 * **Deadline**: *6:00 PM Friday 05th Jul 2019*
