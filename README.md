@@ -2,7 +2,7 @@
 # Lesson 14
 * **Knowledge** : *Recursive, List, Map, algorithm*
 * **Deadline**: *6:00 PM Monday 16th Jul 2019*
-* **Fored Standard**:
+* **Fored Standards**:
   - Get latest code from **master** branch
   - Code in L14 folder
   - Always create a feature with format : **feature/L14-name-member**
@@ -11,7 +11,7 @@
   - All code only in L14.dart
 
 * **Requirements**:
-  - Give a json data 
+  Give a json data 
   ```js
   var menuList = [
     { id: 0, menuName: 'Root', parentId: '#' },
@@ -91,24 +91,17 @@
   ```
   - **L14.3** : covert this ***javascript*** algorithm to ***dart*** [6 marks]
   ```js
-  let isArray = function (obj) {
-      return Object.prototype.toString.call(obj) == "[object Array]";
-    }
     function buildTree(menuMap, parentIdGroups, parentIdRoot) {
-        let currentNode = parentIdGroups[parentIdRoot]
-        if (currentNode === undefined)
-            currentNode = []
-        return currentNode.map((menuId, index) => {
-            let record = menuMap[menuId];
-            let keys = parentIdGroups[parentIdRoot][index];
-            var children = isArray(keys) ?
-                keys.map(key => buildTree(menuMap, parentIdGroups, key)) :
-                buildTree(menuMap, parentIdGroups, keys);
-            if (children.length) {
-                record.children = children;
-            }
-            return record;
-        })
+      let currentParentIdGroup = parentIdGroups[parentIdRoot] || []
+      return currentParentIdGroup.map((menuId, menuIdIndex) => {
+          let menuItem = menuMap[menuId];
+          let parentIdNext = parentIdGroups[parentIdRoot][menuIdIndex];
+          var childrenMenuItem = buildTree(menuMap, parentIdGroups, parentIdNext);
+          if (childrenMenuItem.length) {
+              menuItem["children"] = childrenMenuItem;
+          }
+          return menuItem;
+      })
     }
     (function () {
         let menuMap = {
@@ -147,9 +140,9 @@
         }
         let tree = buildTree(menuMap, parentIdGroups, '#')
         console.log(JSON.stringify(tree, null, 2))
-    })()
+  })()
   ```
-    - Result: Run above code by **Nodejs** or **Chrome** to see result
+    - **Result**: Run above code by **Nodejs** or **Chrome** to see result
     
 # Lesson 13
 * **Knowledge** : *clean code & algorithm*
