@@ -1,7 +1,7 @@
 ﻿﻿﻿﻿# dart-basic
 # Lesson 14
 * **Knowledge** : *Recursive, List, Map, algorithm*
-* **Deadline**: *6:00 PM Monday 16th Jul 2019*
+* **Deadline**: *6:00 PM Tuesday 16th Jul 2019*
 * **Fored Standards**:
   - Get latest code from **master** branch
   - Code in L14 folder
@@ -89,14 +89,14 @@
 	  '#': [ 0 ] 
   }
   ```
-  - **L14.3** : covert this ***javascript*** algorithm to ***dart*** [6 marks]
+  - **L14.3** : covert this ***javascript*** algorithm to ***dart*** [5 marks]
   ```js
     function buildTree(menuMap, parentIdGroups, parentIdRoot) {
       let currentParentIdGroup = parentIdGroups[parentIdRoot] || []
       return currentParentIdGroup.map((menuId, menuIdIndex) => {
           let menuItem = menuMap[menuId];
           let parentIdNext = parentIdGroups[parentIdRoot][menuIdIndex];
-          var childrenMenuItem = buildTree(menuMap, parentIdGroups, parentIdNext);
+          let childrenMenuItem = buildTree(menuMap, parentIdGroups, parentIdNext);
           if (childrenMenuItem.length)
               menuItem["children"] = childrenMenuItem;
           return menuItem;
@@ -142,7 +142,10 @@
   })()
   ```
     - **Result**: Run above code by **Nodejs** or **Chrome** to see result
-    
+
+  - **L14.4** : Check valildation menuList (don't loop/cycle) [1 marks]
+      - Create a adjacency matrix and detect cycle in an undirected graph or another method you like.
+
 # Lesson 13
 * **Knowledge** : *clean code & algorithm*
 * **Deadline**: *6:00 PM Friday 05th Jul 2019*
