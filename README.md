@@ -37,7 +37,7 @@
     { id: 20, menuName: 'T', parentId: 10 }
   ]
   ```
-  - **L14.1**: Convert menuList to menuMap [2 marks]
+  - **L14.1**: Convert ***menuList*** to ***menuMap*** [2 marks]
   ```js
   function convertListMenuToMapMenu(menuList) {
     // todo
@@ -143,8 +143,7 @@
   ```
     - **Result**: Run above code by **Nodejs** or **Chrome** to see result
 
-  - **L14.4** : Check valildation menuList (don't loop/cycle) [1 marks]
-      - Create a adjacency matrix and detect cycle in an undirected graph or another method you like.
+  - **L14.4** : Validate data(menuList) don't loop [1 mark]
 
 # Lesson 13
 * **Knowledge** : *clean code & algorithm*
