@@ -97,9 +97,8 @@
           let menuItem = menuMap[menuId];
           let parentIdNext = parentIdGroups[parentIdRoot][menuIdIndex];
           var childrenMenuItem = buildTree(menuMap, parentIdGroups, parentIdNext);
-          if (childrenMenuItem.length) {
+          if (childrenMenuItem.length)
               menuItem["children"] = childrenMenuItem;
-          }
           return menuItem;
       })
     }
