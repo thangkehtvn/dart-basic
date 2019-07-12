@@ -13,135 +13,135 @@
 * **Requirements**:
   Give a json data 
   ```js
-  var menuList = [
-    { id: 0, menuName: 'Root', parentId: '#' },
-    { id: 1, menuName: 'A', parentId: 0 },
-    { id: 2, menuName: 'B', parentId: 0 },
-    { id: 3, menuName: 'C', parentId: 5 },
-    { id: 4, menuName: 'D', parentId: 5 },
-    { id: 5, menuName: 'E', parentId: 0 },
-    { id: 6, menuName: 'F', parentId: 5 },
-    { id: 7, menuName: 'G', parentId: 1 },
-    { id: 8, menuName: 'H', parentId: 1 },
-    { id: 9, menuName: 'I', parentId: 6 },
-    { id: 10, menuName: 'J', parentId: 6 },
-    { id: 11, menuName: 'K', parentId: 3 },
-    { id: 12, menuName: 'L', parentId: 3 },
-    { id: 13, menuName: 'M', parentId: 3 },
-    { id: 14, menuName: 'N', parentId: 12 },
-    { id: 15, menuName: 'O', parentId: 12 },
-    { id: 16, menuName: 'P', parentId: 18 },
-    { id: 17, menuName: 'Q', parentId: 18 },
-    { id: 18, menuName: 'R', parentId: 10 },
-    { id: 19, menuName: 'S', parentId: 10 },
-    { id: 20, menuName: 'T', parentId: 10 }
+  List<Map<String, dynamic>> menuList = [
+    { "id": 0, "menuName": "Root", parentId: "#" },
+    { "id": 1, "menuName": "A", parentId: 0 },
+    { "id": 2, "menuName": "B", parentId: 0 },
+    { "id": 3, "menuName": "C", parentId: 5 },
+    { "id": 4, "menuName": "D", parentId: 5 },
+    { "id": 5, "menuName": "E", parentId: 0 },
+    { "id": 6, "menuName": "F", parentId: 5 },
+    { "id": 7, "menuName": "G", parentId: 1 },
+    { "id": 8, "menuName": "H", parentId: 1 },
+    { "id": 9, "menuName": "I", parentId: 6 },
+    { "id": 10, "menuName": "J", parentId: 6 },
+    { "id": 11, "menuName": "K", parentId: 3 },
+    { "id": 12, "menuName": "L", parentId: 3 },
+    { "id": 13, "menuName": "M", parentId: 3 },
+    { "id": 14, "menuName": "N", parentId: 12 },
+    { "id": 15, "menuName": "O", parentId: 12 },
+    { "id": 16, "menuName": "P", parentId: 18 },
+    { "id": 17, "menuName": "Q", parentId: 18 },
+    { "id": 18, "menuName": "R", parentId: 10 },
+    { "id": 19, "menuName": "S", parentId: 10 },
+    { "id": 20, "menuName": "T", parentId: 10 }
   ]
   ```
   - **L14.1**: Convert ***menuList*** to ***menuMap*** [2 marks]
-  ```js
-  function convertListMenuToMapMenu(menuList) {
-    // todo
-  }
-  ```
-  Result :
-  ```js
-	{ 
-	  '0': { id: 0, menuName: 'Root'},
-	  '1': { id: 1, menuName: 'A' },
-	  '2': { id: 2, menuName: 'B' },
-	  '3': { id: 3, menuName: 'C' },
-	  '4': { id: 4, menuName: 'D' },
-	  '5': { id: 5, menuName: 'E' },
-	  '6': { id: 6, menuName: 'F' },
-	  '7': { id: 7, menuName: 'G' },
-	  '8': { id: 8, menuName: 'H' },
-	  '9': { id: 9, menuName: 'I' },
-	  '10': { id: 10, menuName: 'J' },
-	  '11': { id: 11, menuName: 'K' },
-	  '12': { id: 12, menuName: 'L' },
-	  '13': { id: 13, menuName: 'M' },
-	  '14': { id: 14, menuName: 'N' },
-	  '15': { id: 15, menuName: 'O' },
-	  '16': { id: 16, menuName: 'P' },
-	  '17': { id: 17, menuName: 'Q' },
-	  '18': { id: 18, menuName: 'R' },
-	  '19': { id: 19, menuName: 'S' },
-	  '20': { id: 20, menuName: 'T' }
-	}
-  ```
-  - **L14.2** : group menu by parentId : [2 marks]
-   ```js
-  function buildGroup(menuList) {
-    // todo
-  }
-  ```
-  Result :
-  ```js
-  {
-	  '0': [ 1, 2, 5 ],
-	  '1': [ 7, 8 ],
-	  '3': [ 11, 12, 13 ],
-	  '5': [ 3, 4, 6 ],
-	  '6': [ 9, 10 ],
-	  '10': [ 18, 19, 20 ],
-	  '12': [ 14, 15 ],
-	  '18': [ 16, 17 ],
-	  '#': [ 0 ] 
-  }
-  ```
-  - **L14.3** : covert this ***javascript*** algorithm to ***dart*** [5 marks]
-  ```js
-    function buildTree(menuMap, parentIdGroups, parentIdRoot) {
-      let currentParentIdGroup = parentIdGroups[parentIdRoot] || []
-      return currentParentIdGroup.map((menuId, menuIdIndex) => {
-          let menuItem = menuMap[menuId];
-          let parentIdNext = parentIdGroups[parentIdRoot][menuIdIndex];
-          let childrenMenuItem = buildTree(menuMap, parentIdGroups, parentIdNext);
-          if (childrenMenuItem.length)
-              menuItem["children"] = childrenMenuItem;
-          return menuItem;
-      })
+    ```js
+    function convertListMenuToMapMenu(menuList) {
+      // todo
     }
-    (function () {
-        let menuMap = {
-            '0': { id: 0, menuName: 'Root' },
-            '1': { id: 1, menuName: 'A' },
-            '2': { id: 2, menuName: 'B' },
-            '3': { id: 3, menuName: 'C' },
-            '4': { id: 4, menuName: 'D' },
-            '5': { id: 5, menuName: 'E' },
-            '6': { id: 6, menuName: 'F' },
-            '7': { id: 7, menuName: 'G' },
-            '8': { id: 8, menuName: 'H' },
-            '9': { id: 9, menuName: 'I' },
-            '10': { id: 10, menuName: 'J' },
-            '11': { id: 11, menuName: 'K' },
-            '12': { id: 12, menuName: 'L' },
-            '13': { id: 13, menuName: 'M' },
-            '14': { id: 14, menuName: 'N' },
-            '15': { id: 15, menuName: 'O' },
-            '16': { id: 16, menuName: 'P' },
-            '17': { id: 17, menuName: 'Q' },
-            '18': { id: 18, menuName: 'R' },
-            '19': { id: 19, menuName: 'S' },
-            '20': { id: 20, menuName: 'T' }
+    ```
+  Result :
+    ```js
+    { 
+      "0": { "id": 0, "menuName": "Root"},
+      "1": { "id": 1, "menuName": "A" },
+      "2": { "id": 2, "menuName": "B" },
+      "3": { "id": 3, "menuName": "C" },
+      "4": { "id": 4, "menuName": "D" },
+      "5": { "id": 5, "menuName": "E" },
+      "6": { "id": 6, "menuName": "F" },
+      "7": { "id": 7, "menuName": "G" },
+      "8": { "id": 8, "menuName": "H" },
+      "9": { "id": 9, "menuName": "I" },
+      "10": { "id": 10, "menuName": "J" },
+      "11": { "id": 11, "menuName": "K" },
+      "12": { "id": 12, "menuName": "L" },
+      "13": { "id": 13, "menuName": "M" },
+      "14": { "id": 14, "menuName": "N" },
+      "15": { "id": 15, "menuName": "O" },
+      "16": { "id": 16, "menuName": "P" },
+      "17": { "id": 17, "menuName": "Q" },
+      "18": { "id": 18, "menuName": "R" },
+      "19": { "id": 19, "menuName": "S" },
+      "20": { "id": 20, "menuName": "T" }
+    }
+    ```
+  - **L14.2** : group menu by parentId : [2 marks]
+    ```js
+    function buildGroup(menuList) {
+      // todo
+    }
+    ```
+  Result :
+    ```js
+    {
+      "0": [ 1, 2, 5 ],
+      "1": [ 7, 8 ],
+      "3": [ 11, 12, 13 ],
+      "5": [ 3, 4, 6 ],
+      "6": [ 9, 10 ],
+      "10": [ 18, 19, 20 ],
+      "12": [ 14, 15 ],
+      "18": [ 16, 17 ],
+      "#": [ 0 ] 
+    }
+    ```
+  - **L14.3** : covert this ***javascript*** algorithm to ***dart*** [5 marks]
+      ```js
+        function buildTree(menuMap, parentIdGroups, parentIdRoot) {
+          let currentParentIdGroup = parentIdGroups[parentIdRoot] || []
+          return currentParentIdGroup.map((menuId, menuIdIndex) => {
+              let menuItem = menuMap[menuId];
+              let parentIdNext = parentIdGroups[parentIdRoot][menuIdIndex];
+              let childrenMenuItem = buildTree(menuMap, parentIdGroups, parentIdNext);
+              if (childrenMenuItem.length > 0)
+                  menuItem["children"] = childrenMenuItem;
+              return menuItem;
+          })
         }
-        let parentIdGroups = {
-            '0': [1, 2, 5],
-            '1': [7, 8],
-            '3': [11, 12, 13],
-            '5': [3, 4, 6],
-            '6': [9, 10],
-            '10': [18, 19, 20],
-            '12': [14, 15],
-            '18': [16, 17],
-            '#': [0]
-        }
-        let tree = buildTree(menuMap, parentIdGroups, '#')
-        console.log(JSON.stringify(tree, null, 2))
-  })()
-  ```
-    - **Result**: Run above code by **Nodejs** or **Chrome** to see result
+        (function () {
+            let menuMap = {
+                '0': { id: 0, menuName: 'Root' },
+                '1': { id: 1, menuName: 'A' },
+                '2': { id: 2, menuName: 'B' },
+                '3': { id: 3, menuName: 'C' },
+                '4': { id: 4, menuName: 'D' },
+                '5': { id: 5, menuName: 'E' },
+                '6': { id: 6, menuName: 'F' },
+                '7': { id: 7, menuName: 'G' },
+                '8': { id: 8, menuName: 'H' },
+                '9': { id: 9, menuName: 'I' },
+                '10': { id: 10, menuName: 'J' },
+                '11': { id: 11, menuName: 'K' },
+                '12': { id: 12, menuName: 'L' },
+                '13': { id: 13, menuName: 'M' },
+                '14': { id: 14, menuName: 'N' },
+                '15': { id: 15, menuName: 'O' },
+                '16': { id: 16, menuName: 'P' },
+                '17': { id: 17, menuName: 'Q' },
+                '18': { id: 18, menuName: 'R' },
+                '19': { id: 19, menuName: 'S' },
+                '20': { id: 20, menuName: 'T' }
+            }
+            let parentIdGroups = {
+                '0': [1, 2, 5],
+                '1': [7, 8],
+                '3': [11, 12, 13],
+                '5': [3, 4, 6],
+                '6': [9, 10],
+                '10': [18, 19, 20],
+                '12': [14, 15],
+                '18': [16, 17],
+                '#': [0]
+            }
+            let tree = buildTree(menuMap, parentIdGroups, '#')
+            console.log(JSON.stringify(tree, null, 2))
+      })()
+      ```
+      - **Result**: Run above code by **Nodejs** or **Chrome** to see result
 
   - **L14.4** : Validate data(menuList) don't loop [1 mark]
 
